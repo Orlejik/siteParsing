@@ -8,7 +8,6 @@ public class Main {
         for (int i = 34254607; i <= 99999999; i++) {
             WriteToFile.writeToFile("https://999.md/ro/" + i);
         }
-        System.out.println("Finished!");
 
 //        SeleniumOpenPage.openPage();
 
