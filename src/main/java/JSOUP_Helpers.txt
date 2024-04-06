@@ -1,0 +1,35 @@
+================================================
+||                                            ||
+||              FIND ELEM BY XPATH            ||
+||                                            ||
+================================================
+
+Document doc = Jsoup.connect("https://jsoup.org/").get();
+
+  Elements elements = doc.selectXpath("//div[@class='col1']/p");
+      // Each P element in div.col1
+
+  List<TextNode> textNodes = doc.selectXpath("//a/text()", TextNode.class);
+      // Each TextNode in every A element
+
+
+================================================
+||                                            ||
+||            CHECK IF ELEM EXISTS            ||
+||                                            ||
+================================================
+
+Elements elements = tbody.select("tr");
+
+    if(!elements.isEmpty()){
+
+        Element tr = temp.get(j);
+
+        if(tr != null){
+            if(string == "A"){
+                //Do something
+            }
+            j = j + 1; //Increment for looking for the next "tr"
+        }
+
+    }
