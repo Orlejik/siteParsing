@@ -33,3 +33,15 @@ Elements elements = tbody.select("tr");
         }
 
     }
+
+================================================
+||                                            ||
+||            Connection to DB                ||
+||                                            ||
+================================================
+
+user : root
+pass : root
+
+1. Start C:\MYSQL\bin\mysqld.exe \\for start the server
+2. Start C:\MYSQL\bin\mysql.exe -u root -p \\for start the MYSQL client
