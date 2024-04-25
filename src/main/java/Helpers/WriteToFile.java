@@ -1,22 +1,26 @@
 
 package Helpers;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class WriteToFile {
-    public static void writeToFile(String str) throws IOException {
-        String filePath = "C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Files\\links.txt";
+    public static void writeInFile(String filePath, String lineToWriteInFile) throws IOException {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            newFile(file, lineToWriteInFile);
+        }
+    }
 
-//       if(!filePath.)
-//        file = new File("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Files\\links.txt");
-        String writtenString = str + "\n";
-        FileOutputStream fileOS = new FileOutputStream(filePath, true);
-        fileOS.write(writtenString.getBytes());
-
-        fileOS.close();
-
+    protected static void newFile(File file, String content) throws IOException {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            writer.write(content);
+            writer.flush();
+        }
     }
 }

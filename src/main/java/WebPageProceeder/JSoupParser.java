@@ -11,6 +11,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
+import static Helpers.WriteToFile.writeInFile;
+
 public class JSoupParser {
 
     public static Map<String, Object> parseWebPage(String linkToParse) throws IOException {
@@ -56,7 +58,7 @@ public class JSoupParser {
                 if (announcNotAvailableMSG.text().contains("Anunț șters.")) {
                     webPageInfo.put("Announcement is Available", false);
                     webPageInfo.put("announce_available", false);
-                    // TODO To put the link is file with old results
+                    writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\OldResults.txt",linkToParse);
                     System.out.println("Announcement is not available or deleted");
                 }
                 webPageInfo.put("phoneNumber", phoneNumberValue);
@@ -70,6 +72,7 @@ public class JSoupParser {
                 webPageInfo.put("announcGroup", announcGroupValue);
                 webPageInfo.put("announcSubGroup", announcSubGroupValue);
                 webPageInfo.put("announcType", announcTypeValue);
+                writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\GoodResults.txt",linkToParse);
                 return webPageInfo;
 
             } catch (NullPointerException ex) {
@@ -78,6 +81,7 @@ public class JSoupParser {
             } catch (HttpStatusException ex) {
                 System.out.println("Announcement is not available 2");
                 // TODO To put the link is file with bad results
+                writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\BadResults.txt",linkToParse);
 //                ex.printStackTrace();
                 System.out.println(ex.getMessage());
             } catch (IOException ex) {
@@ -87,6 +91,7 @@ public class JSoupParser {
         } else {
             System.out.println("not possible to get page...");
             // TODO To put the link is file with unavailable results
+            writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\UnavailableResults.txt",linkToParse);
             System.out.println(response.statusMessage());
         }
         return null;
