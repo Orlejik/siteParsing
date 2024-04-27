@@ -8,10 +8,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
 abstract public class BaseSeleniumTest {
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
-    @Before
-    public void setup(){
+//    @Before
+    public static void setup(){
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--start-maximized","--window-size=1920,1080");
         options.addArguments("--headless","--headless=new");

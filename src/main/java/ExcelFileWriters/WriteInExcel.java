@@ -1,22 +1,20 @@
 package ExcelFileWriters;
+
 import org.apache.poi.ss.usermodel.Header;
-import org.apache.poi.xssf.*;
 import org.apache.poi.xssf.usermodel.XSSFHeaderFooterProperties;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class WriteInExcel {
-    public static void writeToExcelTable(Map<String, String> hashMapData, String filePath){
+    public static void writeToExcelTable(Map<String, String> hashMapData, String filePath) {
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet spreadSheet = workbook.createSheet("Parsed Data");
-
         Header header = spreadSheet.getFirstHeader();
         header.setCenter("Center First Page Header");
         header.setLeft("Left First Page Header");
@@ -36,15 +34,16 @@ public class WriteInExcel {
         props.removeDifferentFirst();
         props.removeDifferentOddEven();
 
-        int rowNum = 1;
+//        int rowNum = 1;
+        XSSFRow row = spreadSheet.createRow(1);
+        int cell = 0;
 
-        for(HashMap.Entry entry : hashMapData.entrySet()){
-            for (int j = 0; j <= hashMapData.size() ; j++) {
-                XSSFRow row = spreadSheet.createRow(rowNum++);
-                row.createCell(j).setCellValue((String) entry.getValue());
-            }
-        }
 
+//        for (Map.Entry<String, String> entry : hashMapData.entrySet()) {
+//
+//
+//
+//        }
         try {
             FileOutputStream file = new FileOutputStream(filePath);
             workbook.write(file);

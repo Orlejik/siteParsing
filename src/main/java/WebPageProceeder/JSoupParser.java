@@ -5,19 +5,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Helpers.CheckString;
+import WebPages.ConfigProvider.ConfigProvider;
 import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
+import static ExcelFileWriters.JSONWriter.writeMapToJSON;
+import static ExcelFileWriters.WriteInExcel.writeToExcelTable;
+import static Helpers.CutString.clearString;
 import static Helpers.WriteToFile.writeInFile;
 
 public class JSoupParser {
 
-    public static Map<String, Object> parseWebPage(String linkToParse) throws IOException {
+    public static void parseWebPage(String linkToParse) throws IOException {
 
-        Map<String, Object> webPageInfo = new HashMap<>();
+        Map<String, String> webPageInfo = new HashMap<>();
 
         Connection.Response response = Jsoup.connect(linkToParse).followRedirects(false).execute();
         System.out.println(response.statusCode() + " : " + response.url());
@@ -56,25 +60,25 @@ public class JSoupParser {
                 Elements announcNotAvailableMSG = doc.selectXpath("//*[@id=\"container\"]/div/div[2]");
 
                 if (announcNotAvailableMSG.text().contains("Anunț șters.")) {
-                    webPageInfo.put("Announcement is Available", false);
-                    webPageInfo.put("announce_available", false);
+                    webPageInfo.put("Announcement is Available", "false");
+                    webPageInfo.put("announce_available", "false");
                     writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\OldResults.txt",linkToParse);
                     System.out.println("Announcement is not available or deleted");
                 }
-                webPageInfo.put("phoneNumber", phoneNumberValue);
-                webPageInfo.put("onSiteFrom", onSiteFromValue);
+                webPageInfo.put("phoneNumber", clearString(phoneNumberValue, ':', 1));
+                webPageInfo.put("onSiteFrom", clearString(onSiteFromValue,' ', 10));
                 webPageInfo.put("ownerName", ownerNameValue);
                 webPageInfo.put("goodsPrice", goodsPriceValue);
                 webPageInfo.put("goodsTitle", goodsTitleValue);
                 webPageInfo.put("goodsCountry", goodsCountryValue);
-                webPageInfo.put("announcRegion", announcRegionValue);
-                webPageInfo.put("announcUpdeted", announcUpdetedValue);
+                webPageInfo.put("announcRegion", clearString(announcRegionValue,',',1));
+                webPageInfo.put("announcUpdeted", clearString(announcUpdetedValue,':',1));
                 webPageInfo.put("announcGroup", announcGroupValue);
                 webPageInfo.put("announcSubGroup", announcSubGroupValue);
-                webPageInfo.put("announcType", announcTypeValue);
+                webPageInfo.put("announcType", clearString(announcTypeValue, ' ',1));
                 writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\GoodResults.txt",linkToParse);
-                return webPageInfo;
-
+//                writeToExcelTable(webPageInfo, ConfigProvider.excelFileForData);
+                writeMapToJSON(webPageInfo);
             } catch (NullPointerException ex) {
                 System.out.println("Announcement is not available 1");
                 ex.printStackTrace();
@@ -94,8 +98,5 @@ public class JSoupParser {
             writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\UnavailableResults.txt",linkToParse);
             System.out.println(response.statusMessage());
         }
-        return null;
-
-
     }
 }

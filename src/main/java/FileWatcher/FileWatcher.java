@@ -8,18 +8,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static Helpers.WriteToFile.writeInFile;
 
-public class FileWatcher {
-    public static void watchFile(String directoryPath, String fileName) {
+public class FileWatcher extends Thread{
+    public static List<String> watchFile(String directoryPath, String fileName) {
         try {
             WatchService watchService = FileSystems.getDefault().newWatchService();
             Path directory = Paths.get(directoryPath);
             directory.register(watchService, StandardWatchEventKinds.ENTRY_MODIFY);
 
             String previousContent = readContent(directory.resolve(fileName).toString());
-
+            ArrayList<String> linkList = new ArrayList<>();
             while (true) {
                 WatchKey key = watchService.take();
                 for (WatchEvent<?> event : key.pollEvents()) {
@@ -32,19 +35,19 @@ public class FileWatcher {
                             String diff = findDifferences(previousContent, currentContent);
                             if (!diff.isEmpty()) {
                                 Thread.sleep(1000);
-                                System.out.print(diff);
-                                writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\newWebDriverTests\\src\\main\\resources\\newChangesFile.txt", diff);
+                               linkList.add(diff);
                                 previousContent = currentContent;
                             }
                         }
                     }
                 }
                 key.reset();
+                return linkList;
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
+    return null;
     }
 
     private static String readContent(String filePath) throws IOException {

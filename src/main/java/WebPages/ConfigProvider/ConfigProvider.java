@@ -10,7 +10,7 @@ public interface ConfigProvider {
     static Config readConfig(){
         return ConfigFactory.systemProperties().hasPath("TestProfile")
                 ? ConfigFactory.load(ConfigFactory.systemProperties().getString("TestProfile"))
-                : ConfigFactory.load("src/main/java/WebPages/Resources/app.conf");
+                : ConfigFactory.load("application.conf");
     }
 
     final String URL = readConfig().getString("url");
@@ -19,4 +19,8 @@ public interface ConfigProvider {
 
     final int offSetX = 1500;
     final int OffSetY = 30;
+
+    final String filePathNewLinks = readConfig().getString("Files.filePathToWrite");
+    final String excelFileForData = readConfig().getString("Files.ExcelFileToWrite");
+    final String jsonFoleForData = readConfig().getString("Files.JSONFileToWrite");
 }

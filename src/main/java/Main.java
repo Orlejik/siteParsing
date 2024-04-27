@@ -1,22 +1,49 @@
-import DBConnector.JDBConnector;
-import DBConnector.MySqlScripts.InsertInto;
-import WebPageProceeder.JSoupParser;
+
+import FileWatcher.FileWatcher;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
 
-import static Helpers.WriteToFile.writeInFile;
+
+import static WebPageProceeder.JSoupParser.parseWebPage;
+import static WebPages.NeSelenium.PagesProceeder.pagesProceeder;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-
-//        for (int i = 77000000; i <= 87000000; i++) {
-//            Thread.sleep(100);
-//            writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\AllTheLinks.txt","https://999.md/ro/" + i+"\n");
+//        pagesProceeder();
+//        ArrayList<String> linksList = new ArrayList<>();
+//        linksList = (ArrayList<String>) FileWatcher.watchFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\resources", "newLinks.xtx");
+//
+//        for(String link : linksList){
+//
 //        }
 
+        parseWebPage("https://999.md/ro/86929026");
 
-//        new JDBConnector();
+//        Thread newAnnouncementsThrad = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    pagesProceeder();
+//                } catch (InterruptedException | IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        });
+//        Thread watchFileChangesThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                ArrayList<String> linksList = new ArrayList<>();
+//                linksList = (ArrayList<String>) FileWatcher.watchFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\resources","newLinks.xtx");
+//            }
+//        });
+//
+//        try{
+//            newAnnouncementsThrad.join();
+//            watchFileChangesThread.join();
+//        }catch(InterruptedException e){
+//            e.printStackTrace();
+//        }
 
 
 //        try {

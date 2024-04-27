@@ -2,7 +2,9 @@ package WebPages.Pages.NotificationsPage;
 
 import WebPages.Core.BaseSeleniumPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.idealized.Javascript;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,6 +29,8 @@ public class NotificationsPage extends BaseSeleniumPage {
 
     public void notificationsPage() throws InterruptedException{
         while(true){
+            driver.navigate().refresh();
+            ((JavascriptExecutor) driver).executeScript("location.reload()");
             List<WebElement> divElements = driver.findElements(By.xpath("//*[@id=\"js-notifications-list\"]/div"));
             for (WebElement notificationUnit : divElements) {
                 if (notificationUnit.getAttribute("class").contains("notifications-list__item is-unread")) {
