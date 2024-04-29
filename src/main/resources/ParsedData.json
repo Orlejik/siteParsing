@@ -1,1 +1,41 @@
-{"announcGroup":"Transport","onSiteFrom":"noiembrie 2014","phoneNumber":"+37368292217","ownerName":"iunior86","announcRegion":" Ungheni","goodsPrice":"2 500","announcUpdeted":" 26 apr. 2024, 9:06","announcSubGroup":"Autoturisme","goodsTitle":"KIA Sorento","goodsCountry":"Moldova","announcType":"Vând"}
+{
+  "86929036" : {
+    "announcGroup" : "Haine, încălțăminte și accesorii",
+    "onSiteFrom" : "iunie 2011",
+    "phoneNumber" : "+37379977669",
+    "ownerName" : "sevcisina",
+    "announcRegion" : " Chișinău mun.",
+    "goodsPrice" : "450",
+    "announcUpdeted" : " 26 apr. 2024, 9:07",
+    "announcSubGroup" : "Încălțăminte copii",
+    "goodsTitle" : "Ghete noi Asics",
+    "goodsCountry" : "Moldova",
+    "announcType" : "Vând"
+  },
+  "86929098" : {
+    "announcGroup" : "Audio-Video-Foto",
+    "onSiteFrom" : "octombrie 2019",
+    "phoneNumber" : "+37379657330",
+    "ownerName" : "bella-rosca1987",
+    "announcRegion" : " Chișinău mun.",
+    "goodsPrice" : "1 400",
+    "announcUpdeted" : " 26 apr. 2024, 9:11",
+    "announcSubGroup" : "Sisteme audio pentru casă",
+    "goodsTitle" : "Aiva",
+    "goodsCountry" : "Moldova",
+    "announcType" : "Vând"
+  },
+  "86929198" : {
+    "announcGroup" : "Transport",
+    "onSiteFrom" : "septembrie 2019",
+    "phoneNumber" : "+37369810869",
+    "ownerName" : "busmd777",
+    "announcRegion" : " Cantemir",
+    "goodsPrice" : "1 200",
+    "announcUpdeted" : " 26 apr. 2024, 9:18",
+    "announcSubGroup" : "Jante și anvelope",
+    "goodsTitle" : "Sprinter R17",
+    "goodsCountry" : "Moldova",
+    "announcType" : "Vând"
+  }
+}

@@ -19,7 +19,7 @@ public class WriteToFile {
 
     protected static void newFile(File file, String content) throws IOException {
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-            writer.write(content);
+            writer.write(content+"\n");
             writer.flush();
         }
     }

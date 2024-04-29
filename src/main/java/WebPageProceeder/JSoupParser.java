@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import Helpers.CheckString;
 import WebPages.ConfigProvider.ConfigProvider;
 import org.jsoup.Connection;
 import org.jsoup.HttpStatusException;
@@ -12,15 +11,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 import org.jsoup.select.Elements;
 
-import static ExcelFileWriters.JSONWriter.writeMapToJSON;
-import static ExcelFileWriters.WriteInExcel.writeToExcelTable;
+import static ExcelFileWriters.JSONProceeder.JSONWriter.writeMapToJSON;
 import static Helpers.CutString.clearString;
 import static Helpers.WriteToFile.writeInFile;
 
 public class JSoupParser {
 
-    public static void parseWebPage(String linkToParse) throws IOException {
+    public static Map<String, Map<String, String>> parseWebPage(String linkToParse) throws IOException {
 
+        Map<String, Map<String, String>> mainMapWebSiteInfo = new HashMap<>();
         Map<String, String> webPageInfo = new HashMap<>();
 
         Connection.Response response = Jsoup.connect(linkToParse).followRedirects(false).execute();
@@ -77,8 +76,10 @@ public class JSoupParser {
                 webPageInfo.put("announcSubGroup", announcSubGroupValue);
                 webPageInfo.put("announcType", clearString(announcTypeValue, ' ',1));
                 writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\GoodResults.txt",linkToParse);
-//                writeToExcelTable(webPageInfo, ConfigProvider.excelFileForData);
-                writeMapToJSON(webPageInfo);
+
+                mainMapWebSiteInfo.put(clearString(linkToParse, '/',12), webPageInfo);
+
+                writeMapToJSON(mainMapWebSiteInfo, ConfigProvider.jsonFoleForData);
             } catch (NullPointerException ex) {
                 System.out.println("Announcement is not available 1");
                 ex.printStackTrace();
@@ -98,5 +99,7 @@ public class JSoupParser {
             writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\UnavailableResults.txt",linkToParse);
             System.out.println(response.statusMessage());
         }
+
+        return mainMapWebSiteInfo;
     }
 }

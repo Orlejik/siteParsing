@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
+import static Helpers.CutString.clearString;
 import static WebPageProceeder.JSoupParser.parseWebPage;
 import static WebPages.NeSelenium.PagesProceeder.pagesProceeder;
 
@@ -18,7 +19,7 @@ public class Main {
 //
 //        }
 
-        parseWebPage("https://999.md/ro/86929026");
+        parseWebPage("https://999.md/ro/86929198");
 
 //        Thread newAnnouncementsThrad = new Thread(new Runnable() {
 //            @Override
