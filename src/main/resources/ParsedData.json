@@ -2221,5 +2221,44 @@
     "goodsTitle" : "Renault Talisman",
     "goodsCountry" : "Moldova",
     "announcType" : "Vând"
+  },
+  "86979188" : {
+    "announcGroup" : "Transport",
+    "onSiteFrom" : "ianuarie 2015",
+    "phoneNumber" : "null!",
+    "ownerName" : "nikuniku2016",
+    "announcRegion" : "null!",
+    "goodsPrice" : "",
+    "announcUpdeted" : " 30 apr. 2024, 16:54",
+    "announcSubGroup" : "Autoturisme",
+    "goodsTitle" : "Renault Modus",
+    "goodsCountry" : "",
+    "announcType" : "Vând"
+  },
+  "86979203" : {
+    "announcGroup" : "Transport",
+    "onSiteFrom" : "in ianuarie 2011",
+    "phoneNumber" : "+37360378601",
+    "ownerName" : "castean1994",
+    "announcRegion" : " Chișinău mun.",
+    "goodsPrice" : "9 900",
+    "announcUpdeted" : " 30 apr. 2024, 16:56",
+    "announcSubGroup" : "Autoturisme",
+    "goodsTitle" : "Ford Focus",
+    "goodsCountry" : "Moldova",
+    "announcType" : "Vând"
+  },
+  "86979211" : {
+    "announcGroup" : "Transport",
+    "onSiteFrom" : "decembrie 2023",
+    "phoneNumber" : "+37369105037",
+    "ownerName" : "97stis",
+    "announcRegion" : " Căușeni",
+    "goodsPrice" : "10 000",
+    "announcUpdeted" : " 30 apr. 2024, 16:58",
+    "announcSubGroup" : "Autoturisme",
+    "goodsTitle" : "BMW 3 Series",
+    "goodsCountry" : "Moldova",
+    "announcType" : "Vând"
   }
 }

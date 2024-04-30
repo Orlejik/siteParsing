@@ -15,9 +15,11 @@ target/
 *.iml
 *.ipr
 *.xlsx
+!**/src/main/java/WebPages/Core/BaseSeleniumPage.java
 !**/src/main/java/WebPages/ConfigProvider/*
 !**/src/main/java/WebPages/NeSelenium/*
 **/src/main/java/WebPages/*
+
 
 ### Eclipse ###
 .apt_generated
