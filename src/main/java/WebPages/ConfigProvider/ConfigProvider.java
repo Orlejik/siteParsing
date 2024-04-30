@@ -17,8 +17,8 @@ public interface ConfigProvider {
     final String USERNAME = readConfig().getString("UserData.login");
     final String PASSWORD = readConfig().getString("UserData.passwd");
 
-    final int offSetX = 1500;
-    final int OffSetY = 30;
+    final int offSetX = readConfig().getInt("Coordinates.offSetX");
+    final int OffSetY = readConfig().getInt("Coordinates.offSetY");
 
     final String filePathNewLinks = readConfig().getString("Files.filePathToWrite");
     final String excelFileForData = readConfig().getString("Files.ExcelFileToWrite");
