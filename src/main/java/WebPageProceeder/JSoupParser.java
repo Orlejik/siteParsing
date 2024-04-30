@@ -26,7 +26,7 @@ public class JSoupParser {
         System.out.println(response.statusCode() + " : " + response.url());
         response.statusCode();
 
-        if (response.statusCode() == 200 || response.statusCode() == 302) {
+        if (response.statusCode() == 200 || response.statusCode() == 302 || response.statusCode() == 301) {
 
             System.out.printf("Link \" %s  \" is available\n ", response.url());
             try {
@@ -77,7 +77,7 @@ public class JSoupParser {
                 webPageInfo.put("announcType", clearString(announcTypeValue, ' ',1));
                 writeInFile("C:\\Users\\artiom.oriol\\Documents\\JavaMITests\\siteParsing\\src\\main\\java\\Results\\GoodResults.txt",linkToParse);
 
-                mainMapWebSiteInfo.put(clearString(linkToParse, '/',12), webPageInfo);
+                mainMapWebSiteInfo.put(clearString(linkToParse, 'd',2), webPageInfo);
 
                 writeMapToJSON(mainMapWebSiteInfo, ConfigProvider.jsonFoleForData);
             } catch (NullPointerException ex) {

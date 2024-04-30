@@ -12,10 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static FileWriter.FileWriter.writeInFile;
+import static WebPageProceeder.JSoupParser.parseWebPage;
 
 public class PagesProceeder {
     protected static WebDriver driver;
@@ -68,17 +70,28 @@ public class PagesProceeder {
 
         driver.get(notifications);
 
-        List<String> newItemLinks = new ArrayList<>();
+
         while (true) {
-            List<WebElement> divElements = driver.findElements(By.xpath("//*[@id=\"js-notifications-list\"]/div"));
-            for (WebElement notificationUnit : divElements) {
-                if (notificationUnit.getAttribute("class").contains("notifications-list__item is-unread")) {
-                    newItemLinks.add(notificationUnit.findElement(By.tagName("a")).getAttribute("href"));
-                    writeInFile(ConfigProvider.filePathNewLinks, notificationUnit.findElement(By.tagName("a")).getAttribute("href"));
+            Set<String> newItemLinks = new HashSet<>();
+            for (int i = 0; i <3 ; i++) {
+                List<WebElement> divElements = driver.findElements(By.xpath("//*[@id=\"js-notifications-list\"]/div"));
+                for (WebElement notificationUnit : divElements) {
+                    if (notificationUnit.getAttribute("class").contains("notifications-list__item is-unread")) {
+                        newItemLinks.add(notificationUnit.findElement(By.tagName("a")).getAttribute("href"));
+                        writeInFile(ConfigProvider.filePathNewLinks, notificationUnit.findElement(By.tagName("a")).getAttribute("href")+"\n");
+                    }
                 }
+                Thread.sleep(2000);
             }
-            System.out.println(newItemLinks);
+
+            if(!newItemLinks.isEmpty()){
+                System.out.println(newItemLinks);
+            }
+            for(String newLink : newItemLinks){
+                parseWebPage(newLink);
+            }
             Thread.sleep(10000);
+            newItemLinks.clear();
             driver.navigate().refresh();
         }
     }

@@ -3,7 +3,7 @@ package ExcelFileWriters.JSONProceeder;
 import WebPages.ConfigProvider.ConfigProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.core.JsonParser.Feature;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class JSONWriter {
 
     public static void writeMapToJSON(Map<String, Map<String, String>> hasmap, String filePath){
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.configure(Feature.AUTO_CLOSE_SOURCE, true);
         ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
         File file = new File(filePath);
         try {
